@@ -1,0 +1,5 @@
+node/**/node_modules/
+node/**/out/
+terraform/build.plan
+terraform/.terraform
+terraform/builds
