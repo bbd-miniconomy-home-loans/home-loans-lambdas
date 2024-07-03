@@ -28,6 +28,33 @@ export async function handler (event, context) {
 
       console.log(result);
 
+    const urlCurBal = `http://api.commercialbank.projects.bbdgrad.com/account/balance`;
+    const headers = {
+        'X-origin': 'home_loans',
+        'Content-Type': 'application/json', // Adjust content type as needed
+        // Add any other headers as needed
+    };
+    const balance = await fetch(urlCurBal, {
+    method: 'GET',
+    headers: headers
+    })
+    .then((response) => {
+        if (!response.ok) {
+        throw new Error(`Network response was not ok: ${  response}`);
+        }
+        return response.json();
+    })
+    .then((data) => {
+        return data;
+    })
+    .catch((error) => {
+        console.error('There has been a problem with your fetch operation:', error);
+    });
+
+    console.log(balance);
+
+    //TODO: write start bal and taxID to DB
+
   const client = new Client({
     host: 'home-loans-service.c9jnw8blzgak.eu-west-1.rds.amazonaws.com',
     user: 'admin_usr',
