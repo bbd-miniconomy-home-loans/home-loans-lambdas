@@ -18,6 +18,24 @@ locals {
         ]
       }
     }
+    pay-tax = {
+      handler       = "index.handler"
+      runtime       = "nodejs20.x"
+      source_path   = "../node/pay-tax/out"
+      environment_variables = {
+        TEST = "test"
+      }
+      permissions_policy = {
+        Version = "2012-10-17"
+        Statement = [
+          {
+            Action   = ["s3:*"]
+            Effect   = "Allow"
+            Resource = "*"
+          }
+        ]
+      }
+    }
 
   }
 }
